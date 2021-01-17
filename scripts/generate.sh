@@ -13,11 +13,11 @@ mkdir -p $OUTPUT_DIR
 
 $SUBWORD_NMT/apply_bpe.py -c $BPE_MODEL_DIR/bpe_code.trg.dict_bpe8000 < $input > $OUTPUT_DIR/test.bpe.src
 
-python -u detok.py $input $OUTPUT_DIR/test.bert.src
+python3 -u detok.py $input $OUTPUT_DIR/test.bert.src
 paste -d "\n" $OUTPUT_DIR/test.bpe.src $OUTPUT_DIR/test.bert.src > $OUTPUT_DIR/test.cat.src
 
 echo Generating...
-CUDA_VISIBLE_DEVICES=$gpu python -u ${FAIRSEQ_DIR}/interactive.py $PREPROCESS \
+CUDA_VISIBLE_DEVICES=$gpu python3 -u ${FAIRSEQ_DIR}/interactive.py $PREPROCESS \
     --path ${MODEL_DIR}/checkpoint_best.pt \
     --beam ${beam} \
     --nbest ${beam} \
@@ -31,5 +31,5 @@ CUDA_VISIBLE_DEVICES=$gpu python -u ${FAIRSEQ_DIR}/interactive.py $PREPROCESS \
     --bert-model-name $bert_type \
     < $OUTPUT_DIR/test.cat.src > $OUTPUT_DIR/test.nbest.tok
 
-cat $OUTPUT_DIR/test.nbest.tok | grep "^H"  | python -c "import sys; x = sys.stdin.readlines(); x = ' '.join([ x[i] for i in range(len(x)) if (i % ${beam} == 0) ]); print(x)" | cut -f3 > $OUTPUT_DIR/test.best.tok
+cat $OUTPUT_DIR/test.nbest.tok | grep "^H"  | python3 -c "import sys; x = sys.stdin.readlines(); x = ' '.join([ x[i] for i in range(len(x)) if (i % ${beam} == 0) ]); print(x)" | cut -f3 > $OUTPUT_DIR/test.best.tok
 sed -i '$d' $OUTPUT_DIR/test.best.tok
