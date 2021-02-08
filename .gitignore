@@ -8,8 +8,8 @@ data/
 ._test.txt
 bert-base-cased/
 bert-fuse/
-bert_nmt/
-!bert_nmt/interactive_api.py
+**bert_nmt/*
+!**bert_nmt/interactive_api.py
 gec-pseudodata/
 process/
 subword/
