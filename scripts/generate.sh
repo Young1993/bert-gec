@@ -17,7 +17,7 @@ python3 -u detok.py $input $OUTPUT_DIR/test.bert.src
 paste -d "\n" $OUTPUT_DIR/test.bpe.src $OUTPUT_DIR/test.bert.src > $OUTPUT_DIR/test.cat.src
 
 echo Generating...
-CUDA_VISIBLE_DEVICES=$gpu python3 -u ${FAIRSEQ_DIR}/interactive.py $PREPROCESS \
+python3 -u ${FAIRSEQ_DIR}/interactive.py $PREPROCESS \
     --path ${MODEL_DIR}/checkpoint_best.pt \
     --beam ${beam} \
     --nbest ${beam} \
