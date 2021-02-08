@@ -3,6 +3,15 @@ __pycache__/
 *.py[cod]
 *$py.class
 .idea/
+bert-nmt/
+data/
+._test.txt
+bert-base-cased/
+bert-fuse/
+bert_nmt/
+gec-pseudodata/
+process/
+subword/
 
 # C extensions
 *.so
