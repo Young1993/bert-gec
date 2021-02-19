@@ -1,5 +1,5 @@
 from subword.apply_bpe import *
-from bert_nmt import interactive_api as corrector
+# from bert_nmt import interactive_api as corrector
 from scripts.detok import  detok
 import argparse
 
@@ -50,15 +50,15 @@ args = parser.parse_args()
 
 # bpe
 args.codes = codecs.open(args.name, encoding='utf-8')
-line = 'In most parts of the world, the volume of traffic is growing at an alarming rate. In the form of an assignment, discuss about the main traffic problems in your country, their causes and possible solutions.'
+line = 'In mosts part of the worlds, the volume of traffic is growing at an alarming rate. In the form of an assignment, discuss about the main traffic problems in your country, their causes and possible solutions.'
 bpe = BPE(args.codes, args.merges, args.separator, None, args.glossaries)
 bpe_bert = bpe.process_line(line)
 print(bpe_bert)
 
 # detok
-test_bert = detok(line)
-print(test_bert)
+input_bert = detok(line)
+print(input_bert)
 
-my_args = corrector.Myargs()
-correction_sub = corrector.Correction(my_args)
-
+# my_args = corrector.Myargs()
+# correction_sub = corrector.Correction(my_args)
+# correction_sub.predict(bpe_bert, input_bert)
