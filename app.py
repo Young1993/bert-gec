@@ -1,5 +1,5 @@
 from subword.apply_bpe import *
-# from bert_nmt import interactive_api as corrector
+from bert_nmt import interactive_api as corrector
 from scripts.detok import  detok
 import argparse
 
@@ -59,6 +59,6 @@ print(bpe_bert)
 input_bert = detok(line)
 print(input_bert)
 
-# my_args = corrector.Myargs()
-# correction_sub = corrector.Correction(my_args)
-# correction_sub.predict(bpe_bert, input_bert)
+my_args = corrector.Myargs()
+correction_sub = corrector.Correction(my_args)
+correction_sub.predict(bpe_bert, input_bert)
